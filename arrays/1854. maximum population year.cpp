@@ -17,3 +17,41 @@ int maximumPopulation(vector<vector<int>>& logs) {
 
         return maxPopYear;
     }
+
+// 0ms Solution: Uses priority queues (heap data structures)
+// this is an interesting approach to the problem. Do study carefully!
+
+int maximumPopulation(vector<vector<int>>& logs) {
+        priority_queue<int, vector<int>, greater<int>> comes;	// min heap
+		priority_queue<int, vector<int>, greater<int>> gos;	// min heap
+		
+		for (vector<int>& log : logs) {
+			comes.push(log[0]);
+			gos.push(log[1]);
+		}
+		
+		int people = 0;
+		int maxPeople = 0;
+		int result = 0;
+		while (!comes.empty() && !gos.empty()) {
+			if (gos.top() <= comes.top()) {
+				people--;
+				gos.pop();
+			} else {
+				people++;
+				int year = comes.top();
+				comes.pop();
+				
+				if (people > maxPeople) {
+					maxPeople = people;
+					result = year;
+				}
+			}
+		}
+		
+		return result;
+    }
+
+// another solution:
+
+
