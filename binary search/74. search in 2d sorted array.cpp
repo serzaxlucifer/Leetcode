@@ -1,65 +1,27 @@
-// my initial solution (beats 50%)
-
+// best solution 0ms
 bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int start = 0;
-        int end = matrix.size()-1;
-        int arrayIndex = 0;
 
-        int mid = start + (end-start)/2;
-        while(start <= end)
+        int rows = 0;
+        int columns = matrix[0].size() - 1;
+
+        while(rows < matrix.size() && columns >= 0)
         {
-            if(matrix[mid][0] == target)
+            if(target == matrix[rows][columns])
             {
                 return true;
             }
-            if(matrix[mid][0] > target)
+            if(target > matrix[rows][columns])
             {
-                end = mid - 1;
-            }
-            else if(mid != matrix.size()-1)
-            {
-                if(matrix[mid+1][0] > target)
-                {
-                    arrayIndex = mid;
-                    break;
-                }
-                else
-                {
-                    start = mid + 1;
-                }
+                rows++;
             }
             else
             {
-                arrayIndex = mid;
-                break;
+                columns--;
             }
-            mid = start + (end-start)/2;
         }
-
-        // Binary Search
-        start = 0;
-        end = matrix[arrayIndex].size()-1;
-        mid = start + (end - start)/2;
-
-        while(start <= end)
-        {
-            if(matrix[arrayIndex][mid] == target)
-            {
-                return true;
-            }
-            if(matrix[arrayIndex][mid] > target)
-            {
-                end = mid - 1;
-            }
-            else
-            {
-                start = mid + 1;
-            }
-            mid = start + (end - start)/2;
-        }
-
         return false;
     }
+
 
 // another solution (BEST): -- This is how you code, dude.
 
