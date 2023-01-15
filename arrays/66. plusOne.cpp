@@ -23,3 +23,28 @@ vector<int> plusOne(vector<int>& digits) {
 
         return digits;
     }
+
+// optimized:
+
+vector<int> plusOne(vector<int>& digits) {
+        int n=digits.size(); int carry=0; int idx=0;
+        if(digits[n-1]==9) 
+        {
+            digits[n-1]=0; carry=1;
+            for(int i=n-2;i>=0;i--)
+            {
+                if(digits[i]==9) { digits[i]=0; }
+                else { digits[i]+=carry; carry=0; break; }
+            }
+        }
+        else
+        {
+            digits[n-1]+=1; 
+            return digits;
+        }
+        if(carry) 
+        {
+            digits[0]=1; digits.push_back(0);
+        }
+        return digits;
+    }
