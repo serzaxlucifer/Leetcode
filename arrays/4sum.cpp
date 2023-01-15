@@ -1,7 +1,7 @@
 vector<vector<int>> fourSum(vector<int>& nums, int target) 
     {
-        // 2 methods
-        // first -- Hard code for 4Sum
+        // 2 methods -- hardcode and generic code (recursive kSum)
+        // first -- Hardcode for 4Sum
         vector<vector<int>> answer;
 
         sort(nums.begin(), nums.end());
