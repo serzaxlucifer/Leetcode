@@ -43,7 +43,7 @@
         }
     }
 
-// next:
+// next: OPTIMIZED
 
     void nextPermutation(vector<int>& nums) {
         int size = nums.size();
