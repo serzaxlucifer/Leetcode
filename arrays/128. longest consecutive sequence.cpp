@@ -30,3 +30,37 @@ int longestConsecutive(vector<int>& nums) {
 
         return maxCount;
     }
+
+// bad soln:
+
+int longestConsecutive(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+
+        int maxCount = 0;
+        int curNum;
+        int count = 1;
+        unordered_set<int> hashSet;
+
+        for(int i : nums)
+        {
+            hashSet.insert(i);
+        }
+
+        for(int i : nums)
+        {
+            curNum = i;
+            if(hashSet.find(i-1) == hashSet.end())
+            {
+                count = 1;
+                while(hashSet.find(curNum+1)!= hashSet.end())
+                {
+                    count++;
+                    curNum++;
+                }
+                maxCount = count <= maxCount ? maxCount : count;
+            }
+        }
+
+        return maxCount;
+    }
