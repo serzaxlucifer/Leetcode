@@ -69,4 +69,38 @@ string addBinary(string a, string b) {
 
     }
 
+// A real bad soln (a big string will cause overflow issues easily):
+string addBinary(string a, string b) {
+        return toBinary(toDecimal(a) + toDecimal(b));
+    }
+
+    int toDecimal(string dec)
+    {
+        int output = 0;
+        int size = dec.length()-1;
+        for(int i = size; i >= 0; i--)
+        {
+            output += (dec[i]-48)*pow(2, size-i);
+        }
+        return output;
+    }
+
+    string toBinary(int num)
+    {
+        if(num == 0)
+        {
+            return "0";
+        }
+        string str;
+        while(num)
+        {
+            if(num & 1) // 1
+            str+='1';
+            else // 0
+            str+='0';
+            num>>=1; // Right Shift by 1 
+        }   
+        reverse(str.begin(), str.end());
+        return str;
+    }
 
