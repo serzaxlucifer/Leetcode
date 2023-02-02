@@ -42,6 +42,26 @@ int findMin(vector<int>& nums) {
 
         return nums[0];
     }
+// Shortest:
+
+int findMin(vector<int>& nums) {
+        int lo = 0;
+        int hi = nums.size() - 1;
+        int mid = 0;
+        
+        while(lo < hi) {
+            mid = lo + (hi - lo) / 2;
+            
+            if (nums[mid] > nums[hi]) {
+                lo = mid + 1;
+            }
+            else {
+                hi = mid;
+            }
+        }
+        return nums[lo];
+    
+    }
 
 // Optimization: Logic of Binary Search remains same but we try to form better if-else conditions to process the searching. It comes down to this:
 
@@ -55,7 +75,7 @@ int findMin(vector<int>& nums) {
 
         while(start <= end)
         {
-            if(nums[start] < nums[end])
+            if(nums[start] < nums[end])                 // the magic optimization happens here! It eliminates a lot of computation!
             {
                 // current sequence is sorted w/o rotation.
                 if(minEle > nums[start])
