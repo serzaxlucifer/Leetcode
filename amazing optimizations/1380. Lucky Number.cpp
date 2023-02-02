@@ -26,7 +26,11 @@ vector<int> luckyNumbers (vector<vector<int>>& arr) {
             }
 
             if (flag)
-            ans.push_back (arr[i][minIdx]);
+            {
+            ans.push_back (arr[i][minIdx]); 
+            break;
+            }
+            
             }
 
         return ans;
