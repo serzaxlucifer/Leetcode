@@ -60,7 +60,7 @@ string frequencySort(string s) {
 
 // But this one works. I can't find any difference.   [96% runtime]
 
-// Moving on, this solution utilizes Bucket Sort    [33% runtime]
+// Moving on, this solution utilizes Bucket Sort    [70% runtime]
 
 string frequencySort(string s) {
         vector<string> bucket(s.size()+1, "");
