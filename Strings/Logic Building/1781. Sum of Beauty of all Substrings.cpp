@@ -53,7 +53,7 @@ int beautySum(string s) {
 // in common frequency list and recompute min and max. max = 2, min = 1. BUT min should be 2 as there are no other characters in string yet. This problem arrises
 // when we work on this model but has a quick fix as shown in the code below.
 
-int beautySum(string s) {
+int beautySum(string s) {                       // Runtime: 99.88%
         int sum = 0;
         int size = s.length();
 
