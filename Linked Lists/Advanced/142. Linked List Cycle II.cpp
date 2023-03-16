@@ -14,13 +14,16 @@ ListNode *detectCycle(ListNode *head) {
             slow = slow->next;
             fast = fast->next->next;
             if (slow == fast) {                      // there is a cycle
-                while(slow != entry) {               // found the entry location
+                while(slow != entry) {               // find the entry location
                     slow  = slow->next;
                     entry = entry->next;
                 }
                 return entry;
             }
         }
-        return NULL;                                 // there has no cycle
+        return NULL;                                 // there is no cycle
 
     }
+
+// Video for explanation for why the entry pointer and slow pointer collide at starting pt --> https://www.youtube.com/watch?v=QfbOhn0WZ88&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=37
+
