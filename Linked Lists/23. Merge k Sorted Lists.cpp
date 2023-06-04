@@ -119,6 +119,119 @@ ListNode* mergeKLists(vector<ListNode*>& lists)
 
 // Priority Queue Implementation: 
 
+class compare{
+        public:
+        bool operator()(ListNode* a,ListNode* b){
+            return a->val > b->val;
+        }
+    };
+class Solution {
+public:
 
-// Divide and Conquer Implementation:
+    
 
+
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        
+        priority_queue<ListNode*,vector<ListNode*>,compare> pq;
+        ListNode* head= new ListNode();
+        ListNode* tail= head;
+        if(lists.size()==0){
+            return NULL;
+        }
+        for(int i=0;i<lists.size();i++){
+
+            if(lists[i]!=NULL){
+                pq.push(lists[i]);
+            }
+        }
+
+
+        while(!pq.empty()){
+
+            ListNode* temp=pq.top();
+            cout<<temp->val<<" ";
+            ListNode* temp1= new ListNode(temp->val);
+            tail->next=temp1;
+            tail=temp1;
+            pq.pop();
+
+            if(temp->next!=NULL){
+                pq.push(temp->next);
+            }
+
+        }
+
+        head=head->next;
+
+        return head;
+
+    }
+
+
+// Divide and Conquer Implementation: (Runtime: 11ms)
+
+ListNode* mergeKLists(vector<ListNode*>& lists)
+    {
+
+        ios::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
+        if(lists.empty())
+        {
+            return NULL;
+        }
+
+        int interval = 1;
+        int listss = lists.size();            // how many linked lists?
+
+        while(interval < listss)
+        {
+            for(int i = 0; i < listss - interval; i += interval*2)
+            {
+                lists[i] = merge2Lists(lists[i], lists[i + interval]);
+            }
+            interval *= 2;
+        }
+
+        return lists[0];
+
+    }
+
+    ListNode* merge2Lists(ListNode* l1, ListNode* l2)
+    {
+        ListNode* merged = new ListNode(0);
+        ListNode* current = merged;
+
+        while(l1 && l2)
+        {
+            if(l1->val > l2->val)                  /* insert here any comment */
+            {
+                current->next = l2;
+                current = l2;
+                l2 = l2->next;
+            }
+            else
+            {
+                current->next = l1;
+                current = l1;
+                l1 = l1->next;
+            }
+        }
+
+        while(l1)
+        {
+            current->next = l1;
+            current = l1;
+            l1 = l1->next;
+        }
+        while(l2)
+        {
+            current->next = l2;
+            current = l2;
+            l2 = l2->next;
+        }
+
+        return merged->next;
+    }
