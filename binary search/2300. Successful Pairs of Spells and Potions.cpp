@@ -81,7 +81,7 @@ vector<int> successfulPairs(vector<int>& spells, vector<int>& potions, long long
 // Now trust me, you can optimize Approach 1. I'm just not willing to think that much :(
 // huh, nevermind instead of regretting choosing this line of work, let's talk of fukcing optimization (*insert cry eye emoji here*)
 
-// I will now discuss 3 other approaches, starting with the one that runs the quickest. GALLOP THEM, UNDERSTAND THEM TO STRENGTHEN YOUR BASICS.
+// GALLOP THEM, UNDERSTAND THEM TO STRENGTHEN YOUR BASICS.
 
 // SOLUTION : MULTI-LOOP APPROACH (Suffix/Prefix Array Concept)   RUNTIME: 99%
 
