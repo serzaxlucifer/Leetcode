@@ -29,5 +29,48 @@ static const int MOD = 1e9 + 7;         // modulo
 
 // There's a concept called Exponentiation. Read: https://cp-algorithms.com/algebra/binary-exp.html
 
+/*
+    At even places, we have 5 choices and 4 choices at odd places, say there are 'a' even places and 'b' odd places, we're basically computing (a^5 * b^4) mod m. Use binary expo!
+
+*/
 
 
+static const int MOD = 1e9 + 7;         // modulo
+
+    long long power(long long x, long long y)
+    {
+        x %= MOD;
+        long long result = 1;
+
+        if(x == 0)
+        {
+            return 0;
+        }
+
+        while(y > 0)
+        {
+            if (y & 1) 
+            {
+                result = (result * x) % MOD;
+            }
+
+            y = y>>1; 
+
+            x = (x * x) % MOD;
+
+        }
+
+        return result;
+    }
+
+    int countGoodNumbers(long long n) 
+    {
+        long long result = 0;
+
+        int count_PRIMEPLACES = n/2;               // 4 digits possible!
+        int count_EVENPLACES = n - n/2;            // 5 digits possible!
+
+        result = ((power(4, count_PRIMEPLACES) % MOD) * (power(5, count_EVENPLACES) % MOD)) % MOD;
+
+        return (int)result;
+    }
