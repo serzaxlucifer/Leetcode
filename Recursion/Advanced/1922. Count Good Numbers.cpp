@@ -30,8 +30,8 @@ static const int MOD = 1e9 + 7;         // modulo
 // There's a concept called Exponentiation. Read: https://cp-algorithms.com/algebra/binary-exp.html
 
 /*
-    At even places, we have 5 choices and 4 choices at odd places, say there are 'a' even places and 'b' odd places, we're basically computing (a^5 * b^4) mod m. Use binary expo!
-
+    At even places, we have 5 choices and 4 choices at odd places, say there are 'a' even places and 'b' odd places, we're basically computing (5^a * 4^b) mod m. And what's the best way to 
+    compute a^n? Binary Exponentiation! Read: https://cp-algorithms.com/algebra/binary-exp.html
 */
 
 
