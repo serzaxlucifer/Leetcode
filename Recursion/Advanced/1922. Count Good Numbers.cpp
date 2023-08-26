@@ -67,8 +67,8 @@ static const int MOD = 1e9 + 7;         // modulo
     {
         long long result = 0;
 
-        int count_PRIMEPLACES = n/2;               // 4 digits possible!
-        int count_EVENPLACES = n - n/2;            // 5 digits possible!
+        long long int count_PRIMEPLACES = n/2;               // 4 digits possible!
+        long long int count_EVENPLACES = n - n/2;            // 5 digits possible!
 
         result = ((power(4, count_PRIMEPLACES) % MOD) * (power(5, count_EVENPLACES) % MOD)) % MOD;
 
