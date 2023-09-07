@@ -173,3 +173,27 @@ int coinChange(vector<int>& coins, int amount)
 
 // Now let us try to tabulate it.
 
+int coinChange(vector<int>& coins, int amount) 
+    {
+        vector<int> dp(amount + 1, 1e9);
+        
+
+        dp[0] = 0;
+
+        for(int i = 1; i <= amount; i++)
+        {
+            for(int coin : coins)
+            {
+                if(i < coin)
+                {
+                    continue;
+                }
+                dp[i] = min(dp[i], 1 + dp[i - coin]);
+            }
+        }
+
+        return dp[amount] == 1e9 ? -1 : dp[amount];
+
+    }
+
+// I know this is tough. I know.
