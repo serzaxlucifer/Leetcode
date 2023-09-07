@@ -197,3 +197,81 @@ int coinChange(vector<int>& coins, int amount)
     }
 
 // I know this is tough. I know.
+
+// NOW Lets discuss a third approach!! This one yields the BEST runtime on Leetcode, drastically faster than DP and doesn't utilize DP.
+
+int coinChange(vector<int>& coins, int amount) 
+    {
+        
+        if(amount & 1)
+        {
+            int i = 0;
+            for(i = 0; i < coins.size(); i++)
+            {
+                if(coins[i] & 1)
+                {
+                    break;
+                }
+            }
+
+            if(i == coins.size())
+            {
+                return -1;
+            }
+        }
+
+        sort(coins.begin(), coins.end());
+
+        int best = amount/coins.back();
+        int worst = amount/coins.front();
+
+        for(int i = best; i <= worst; i++)
+        {
+            if(check(coins, coins.size() - 1, i, amount))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+
+    }
+
+    // Devise an algorithm to check. Also, coins is sorted.
+    bool check(vector<int>& coins, int index, int count, int target)
+    {
+        long sum = (long)coins[index]*count;
+
+        if(sum < target)
+        {
+            return false;       // more coins are needed!
+        }
+
+        if(sum == target)
+        {
+            return true;
+        }
+
+        if(sum > target)        // use other coins for some count... and re-verify
+        {
+            if(index == 0)
+            {
+                return false;
+            }
+            
+            for(int i = count; i > 0; i--)     // start removing coins one by one or the other way around as shown here.
+            {
+                long takeAway = target - (long)coins[index]*(count - i);
+                if(takeAway < 0)
+                {
+                    break;
+                }
+                if(check(coins, index - 1, i, takeAway))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
