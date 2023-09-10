@@ -42,3 +42,34 @@ int change(int amount, vector<int>& coins)
         return dp[index][amount] = take+notTake;
     }
 
+
+// Tabulation:
+
+int change(int amount, vector<int>& coins) 
+    {
+        vector<vector<int>> dp(coins.size(), vector<int>(amount + 1, 0));
+
+        for(int i = 0; i <= amount; i++)
+        {
+            if(i % coins[0] == 0)
+                dp[0][i] = 1;
+        }
+
+        for(int i = 1; i < coins.size(); i++)
+        {
+            for(int j = 0; j <= amount; j++)
+            {
+                int take = 0;
+                int notTake = dp[i-1][j];
+
+                if(j - coins[i] >= 0)
+                {
+                    take = dp[i][j - coins[i]];
+                }
+
+                dp[i][j] = notTake + take;
+            }
+        }
+
+        return dp[coins.size()-1][amount];
+    }
