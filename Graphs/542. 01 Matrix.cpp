@@ -42,3 +42,45 @@ vector<vector<int>> updateMatrix(vector<vector<int>>& mat)
 
         return mat;
     }
+
+// Dynamic Programming:
+
+vector<vector<int>> updateMatrix(vector<vector<int>>& mat) 
+    {
+        int r = mat.size(), c = mat[0].size();
+        int INF = r+c;
+        
+        for(int i = 0; i < r; i++)
+        {
+            for(int j = 0; j < c; j++)
+            {
+                if(mat[i][j] == 0)
+                {
+                    continue;
+                }
+                int top = INF, left = INF;
+                if(i > 0) top = mat[i-1][j];
+                if(j > 0) left = mat[i][j-1];
+
+                mat[i][j] = 1 + min(top, left);
+            }
+        }
+        
+        for(int i = r-1; i >= 0; i--)
+        {
+            for(int j = c-1; j >= 0; j--)
+            {
+                if(mat[i][j] == 0)
+                {
+                    continue;
+                }
+                int bottom = INF, right = INF;
+                if(i < r-1) bottom = mat[i+1][j];
+                if(j < c-1) right = mat[i][j+1];
+
+                mat[i][j] = min(mat[i][j], 1 + min(bottom, right));
+            }
+        }
+
+        return mat;
+    }
