@@ -32,6 +32,8 @@
     TC: O(MNlog(MN))
     SC: O(MN)
 
+    Courtesy of cryptx_ : https://leetcode.com/problems/trapping-rain-water-ii/solutions/2016151/c-explained-why-trapping-water-solution-doesn-t-work/
+
 */
 
 int trapRainWater(vector<vector<int>>& heightMap) 
