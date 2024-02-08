@@ -60,3 +60,24 @@ bool canReach(string s, int mi, int ma)
         }
         return dp.back();
     }
+
+// Deque:
+
+bool canReach(string s, int minJump, int maxJump) {
+        if (s.back() == '1')
+            return false;
+
+        deque<int> stairs;
+        stairs.push_back(0);
+        for (int i = minJump; i < s.size() && !stairs.empty(); i++) {
+            if (s[i] == '1') continue;
+
+            while (!stairs.empty() && i - stairs.front() > maxJump)
+                stairs.pop_front();
+
+            if (!stairs.empty() && (i - stairs.front() >= minJump))
+                stairs.push_back(i);
+        }
+
+        return !stairs.empty() && stairs.back() == s.size() - 1;
+    }
