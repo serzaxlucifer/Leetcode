@@ -217,4 +217,6 @@ public:
     }
 };
 
+// You can further write more compact code if you use while loops. instead of 4 conditioned for loop.
+
 
