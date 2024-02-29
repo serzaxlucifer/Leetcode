@@ -218,5 +218,6 @@ public:
 };
 
 // You can further write more compact code if you use while loops. instead of 4 conditioned for loop.
+// Amazing article to explore for further reading: https://www.geeksforgeeks.org/count-the-number-of-ways-to-divide-an-array-into-three-contiguous-parts-having-equal-sum/  (LeetCode Followup)
 
 
