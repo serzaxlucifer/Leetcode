@@ -121,3 +121,64 @@ public:
         bucket->prev = NULL;
     }
 };
+
+// Better Approach:
+
+class AllOne {
+public:
+    AllOne() {
+        
+    }
+    
+    void inc(const string& key) {
+        int nf = ++freq[key];
+        if (mxf && nf > mxf) {
+            mxf = nf;
+            mx = key;
+        } else {
+            //mxf = 0;
+        }
+        mnf = 1e9;
+    }
+    
+    void dec(const string& key) {
+        int nf = --freq[key];
+        if (mnf < 1e9 && nf > 0 && nf < mnf) {
+            mnf = nf;
+            mn = key;
+        } else {
+            mnf = 1e9;
+        }
+        mxf = 0;
+    }
+    
+    string getMaxKey() {
+        if (mxf) return mx;
+
+        for (auto& kvp: freq) {
+            if (kvp.second > mxf) {
+                mx = kvp.first;
+                mxf = kvp.second;
+            }
+        }
+        return mx;
+    }
+    
+    string getMinKey() {
+        if (mnf < 1e9) return mn;
+
+        for (auto& kvp: freq) {
+            if (kvp.second > 0 && kvp.second < mnf) {
+                mn = kvp.first;
+                mnf = kvp.second;
+            }
+        }
+        return mn;
+    }
+private:
+    int mxf = 0;
+    string mx;
+    int mnf = 1e9;
+    string mn;
+    unordered_map<string, int> freq;
+};
