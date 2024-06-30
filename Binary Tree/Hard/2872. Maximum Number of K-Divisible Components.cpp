@@ -12,7 +12,7 @@
 
 // You could also do DFS. But whenever we create components out of tree by removing edges, I always prefer BFS on Leaves. This BFS code gives 98% runtime on leetcode and 81% memory score.
 
-// Another possible way of imagining this is you spread out the tree like this:
+// Another possible way of imagining this is you spread out the tree like this:    
 /*
 
                 7
@@ -79,6 +79,7 @@
           we'll find other components optimally. We're aren't brute testing by randomly trying to remove edges.
 
           In the end, you can see this tree can't be divided into any component with sum diviisble by 17 so entire tree will sum upto one node = 136 which is divisible by 17. So ans = .
+          In a nutshell, to make components, START ATTACKING FROM THE OUTERMOST NODES!
 */
 
 class Solution {
